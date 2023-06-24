@@ -21,6 +21,9 @@ void users();
 void admi_pass();
 void user();
 void home();
+void insert_book();
+void insert_at_biginning(); 
+void insert_at_end();
 void delete_book();
 void delete_beginning();
 void delete_end();
@@ -165,6 +168,102 @@ void user()
 		system("cls");
 		break;
 	}
+}
+// Function display a insert main
+void insert_book()   //bemnet
+{
+	int choice;
+	cout << "\n\n";
+	cout << "\t\t<1> TO INSERT A BOOKS AT THE BIGINNING. \n";
+	cout << "\t\t<2> TO INSERT A BOOKS AT THE END. \n";
+	cout << "\t\t<3> TO RETERN INTO THE PREVIOUSE PAGE \n";
+	cout << "\n ENTER YOUR CHOICE: ";
+	cin >> choice;
+	switch(choice)
+	{
+	case 1:
+		system("cls");
+		insert_at_biginning();
+		break;
+	case 2:
+		system("cls");
+		insert_at_end();
+		break;
+	case 3:
+		cin.ignore();
+		cin.get();
+		system("cls");
+		admi_pass();
+		break;
+	}
+
+}
+// Function to insert a book at beginning
+void insert_at_biginning()
+{
+	temp = new book;
+	temp->next = NULL;
+	temp->pre = NULL;
+	cout << "ENTERE THE BOOK TITEL: ";
+	cin >> temp->book_title;
+	cout << "ENTERE THE NAME OF AUTHOR OF THE BOOK: ";
+	cin >> temp->author;
+	cout << "ENTERE THE PUPLISHER OF THE BOOK: ";
+	cin >> temp->publisher;
+	cout << "ENTERE THE BOOK ID: ";
+	cin >> temp->book_id;
+	if(start == NULL )
+	{
+
+		start = temp;
+		last = temp;
+	}
+
+	else
+	{
+		temp->next = start;
+		start->pre = temp;
+		start = temp;
+	}
+	cout << "\n\t\tTHE BOOK INFORMATION IS SAVED SUCCESSFULLY \n";
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	insert_book();
+
+}
+// Function to insert a book at the end
+void insert_at_end()
+{
+	temp = new book;
+	temp->next = NULL;
+	temp->pre = NULL;
+	cout << "ENTERE THE BOOK TITEL: ";
+	cin >> temp->book_title;
+	cout << "ENTERE THE NAME OF AUTHOR OF THE BOOK: ";
+	cin >> temp->author;
+	cout << "ENTERE THE PUPLISHER OF THE BOOK: ";
+	cin >> temp->publisher;
+	cout << "ENTERE THE BOOK ID: ";
+	cin >> temp->book_id;
+	temp->next = NULL;
+	temp->pre = NULL;
+	if(start == NULL || last == NULL)
+		start = last = temp;
+	else
+	{
+		last->next = temp;
+		temp->pre = last;
+		last = temp;
+	}
+
+	cout << "\n\t\t THE BOOK INFORMATION IS SAVED SUCCESSFULLY \n";
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	insert_book();
 }
 // Function to delete
 void delete_book()
