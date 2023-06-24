@@ -21,6 +21,10 @@ void users();
 void admi_pass();
 void user();
 void home();
+void delete_book();
+void delete_beginning();
+void delete_end();
+void delete_search();
 void developers(int num);
 // Function display a loding
 void intro()
@@ -161,6 +165,132 @@ void user()
 		system("cls");
 		break;
 	}
+}
+// Function to delete
+void delete_book()
+{
+	int choice;
+	cout << "\n\n";
+	cout << "\t\t<1> TO DELETE AT THE BEGINNING \n";
+	cout << "\t\t<2> TO DELETE AT THE END. \n";
+	cout << "\t\t<3> TO DELETE A SPSCEFIC BOOK. \n";
+	cout << "\t\t<4> TO RETERN INTO THE PREVIOUSE PAGE \n";
+	cout << "\n ENTER YOUR CHOICE: ";
+	cin >> choice;
+	switch(choice)
+	{
+	case 1:
+		system("cls");
+		delete_beginning();
+		break;
+	case 2:
+		system("cls");
+		delete_end();
+		break;
+	case 3:
+		system("cls");
+		delete_search();
+	case 4:
+		system("cls");
+		admi_pass();
+		break;
+	}
+}
+// Function to delete a at the beginning
+void delete_beginning()
+{
+	if(start == NULL)
+		cout << "the list is empty \n";
+	else
+	{
+		temp = start;
+		start = start->next;
+		start->pre = NULL;
+		cout << temp->book_title << " deleted successfully!! \n";
+		delete temp;
+	}
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	delete_book();
+}
+// Function to delete a at the end
+void delete_end()
+{
+	if(last == NULL)
+		cout << "\n\n\tthe list is empty \n";
+	else
+	{
+		temp = last;
+		last = last->pre;
+		last->next = NULL;
+		cout << "\n\n\t" << temp->book_title << " deleted successfully!! \n\n";
+		delete temp;
+	}
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	delete_book();
+}
+// Function to delete a spcfic book
+void delete_search()
+{
+	if(start == NULL)
+		cout << "\n\n\tthe list is empty /n";
+	else
+	{
+		string ID;
+		temp = start;
+		cout << "\n\n\tENTERE THE BOOK ID: ";
+		cin >> ID;
+		while(temp != NULL)
+		{
+			if(temp->book_id == ID)
+			{
+				if(start == last)
+				{
+					start = last = NULL;
+					cout << "\n\n\t" << temp->book_title << " deleted successfully!! \n";
+					delete temp;
+				}
+				else if(temp == start)
+				{
+					start = temp->next;
+					start->pre = NULL;
+					cout << "\n\n\t" << temp->book_title << " deleted successfully!! \n";
+					delete temp;
+				}
+				else if(temp == last)
+				{
+					last = temp->pre;
+					last->next = NULL;
+					cout << "\n\n\t" << temp->book_title << " deleted successfully!! \n";
+					delete temp;
+				}
+				else
+				{
+					temp2 = temp->pre;
+					temp2->next = temp->next;
+					temp3 = temp->next;
+					temp3->pre = temp->pre;
+					cout << "\n\n\t" << temp->book_title << " deleted successfully!! \n";
+					delete temp;
+				}
+				break;
+			}
+			else
+			{
+				temp = temp->next;
+			}
+		}
+	}
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	delete_book();
 }
 
 // Function to display the group members
