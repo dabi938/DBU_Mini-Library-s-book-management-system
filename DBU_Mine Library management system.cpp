@@ -24,6 +24,8 @@ void home();
 void insert_book();
 void insert_at_biginning(); 
 void insert_at_end();
+void display_book(int num);
+void all_display(int num);
 void delete_book();
 void delete_beginning();
 void delete_end();
@@ -170,7 +172,7 @@ void user()
 	}
 }
 // Function display a insert main
-void insert_book()   //bemnet
+void insert_book()
 {
 	int choice;
 	cout << "\n\n";
@@ -264,6 +266,59 @@ void insert_at_end()
 	cin.get();
 	system("cls");
 	insert_book();
+}
+// Function to display a display main
+void display_book(int num)
+{
+	int choice;
+	cout << "\n\n";
+	cout << "\t\t<1> TO DISPLAY ALL BOOKS \n";
+	cout << "\t\t<2> TO SEARCHE A BOOKS. \n";
+	cout << "\t\t<3> TO RETERN INTO THE PREVIOUSE PAGE \n";
+	cout << "\n ENTER YOUR CHOICE: ";
+	cin >> choice;
+	switch(choice)
+	{
+	case 1:
+		system("cls");
+		all_display(num);
+		break;
+	case 2:
+		system("cls");
+		search(num);
+		break;
+	case 3:
+		system("cls");
+		if(num == 1)
+			admi_pass();
+		else
+			user();
+		break;
+	}
+}
+
+// Function to display a book
+void all_display(int num)
+{
+	cout << "\t____________________________________________________________________\n\n";
+	cout << "\t|book_name         |author        | publisher        | book_id     |" << endl;
+	cout << "\t____________________________________________________________________" << endl;
+	if(start == NULL || last == NULL)
+		cout << "the list is empty " << endl;
+	else
+	{
+		temp = start;
+		while(temp != NULL)
+		{
+			cout << "\t " << temp->book_title << "\t\t   " << temp->author << "\t\t  " << temp->publisher << "\t\t\t" << temp->book_id << "\n ";
+			temp = temp->next;
+		}
+	}
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	display_book(num);
 }
 // Function to delete
 void delete_book()
