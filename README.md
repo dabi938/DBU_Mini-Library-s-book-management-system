@@ -1,7 +1,7 @@
-# DBU_Meni-Library-management-system
-# Easy and Simple Mine Library management system
+# DBU_Mini-Library's book-management-system
+# Easy and Simple Mini Library's book management system
 # Project collaburatore
-# NAME             |F_NAME        | ID       
+# NAME             F_NAME         ID       
 # AMANUL 		       MENGISTU        0749/13          
 # BEiMNET           WESLEY         0594/13  
 # BINYAM           DAMENE          0500/13
