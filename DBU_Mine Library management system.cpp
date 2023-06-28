@@ -30,6 +30,8 @@ void delete_book();
 void delete_beginning();
 void delete_end();
 void delete_search();
+void sortBooks();
+void sortId(book * i, book * j);
 void developers(int num);
 // Function display a loding
 void intro()
@@ -416,7 +418,49 @@ void delete_search()
 	system("cls");
 	delete_book();
 }
+// Function to sort a doubly linked list which is pass the values for the sortId() function
+void sortBooks()
+{
 
+	if(start == NULL)
+		cout << endl << "\t\tTHE LIST IS EMPTY." << endl << endl;
+	else if (start -> next == NULL)
+		cout << endl << "\n\t\tTHE BOOKS ARE SORTED SUCCESSFULLY!!" << endl << endl;
+	else
+	{
+		for(book *i = start; i != NULL; i = i->next)
+			for(book *j = i->next; j != NULL; j = j->next)
+				if  (i -> book_id > j -> book_id)
+					sortId(i, j);
+
+	}
+	cout << "\n\t\tTHE BOOKS ARE SORTED SUCCESSFULLY! \n\n";
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	admi_pass();
+}
+// Function to sort a doubly linked list using the book_id of the books in assending order
+void sortId(book * i, book * j)
+{
+	temp = new book;
+	temp->book_title = j->book_title;
+	temp->author = j->author;
+	temp->publisher = j->publisher;
+	temp->book_id = j->book_id;
+
+	j->book_title = i->book_title;
+	j->author = i->author;
+	j->publisher = i->publisher;
+	j->book_id = i->book_id;
+
+	i->book_title = temp->book_title;
+	i->author = temp->author;
+	i->publisher = temp->publisher;
+	i->book_id = temp->book_id;
+
+}
 // Function to display the group members
 void developers(int num)
 {
