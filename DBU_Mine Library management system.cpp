@@ -26,6 +26,7 @@ void insert_at_biginning();
 void insert_at_end();
 void display_book(int num);
 void all_display(int num);
+void search(int num)
 void delete_book();
 void delete_beginning();
 void delete_end();
@@ -322,6 +323,45 @@ void all_display(int num)
 	system("cls");
 	display_book(num);
 }
+// Function to search a book
+void search(int num) 
+{
+	int found = 0;
+	if(start == NULL)
+		cout << "\n\t\tthe list is empty /n";
+	else
+	{
+		string ID;
+		temp = start;
+		cout << "\n\n\tENTERE THE BOOK ID: ";
+		cin >> ID;
+		while(temp != NULL)
+		{
+			if(temp->book_id == ID)
+			{
+				cout << "\t____________________________________________________________________\n\n";
+				cout << "\t|book_name         |author        | publisher        | book_id     |" << endl;
+				cout << "\t____________________________________________________________________" << endl;
+				cout << "\t " << temp->book_title << "\t\t   " << temp->author << "\t\t  " << temp->publisher << "\t\t\t" << temp->book_id << "\n ";
+				found = 1;
+				break;
+			}
+			else
+			{
+				temp = temp->next;
+			}
+		}
+		if(found == 0)
+			cout << "\n\t\tBOOK IS NOT FOUND \n";
+
+	}
+	cout << "\n\t\tPress anykey to go into previous screen.\n";
+	cin.ignore();
+	cin.get();
+	system("cls");
+	display_book(num);
+}
+
 // Function to delete a at the beginning
 void delete_beginning()
 {
